@@ -18,7 +18,7 @@ struct StatGraphsView: View {
         ScrollView(.horizontal) {
             HStack {
                 
-                LineChartView(data: countryStatistic.confirmed.map { Double($0) }, title: "Confirmed", rateValue: nil)
+                LineChartView(data: countryStatistic.cases.map { Double($0) }, title: "Cases", rateValue: nil)
                 LineChartView(data: countryStatistic.deaths.map { Double($0) }, title: "Deaths", rateValue: nil)
                 LineChartView(data: countryStatistic.recovered.map { Double($0) }, title: "Recovered", rateValue: nil)
                 
@@ -29,6 +29,6 @@ struct StatGraphsView: View {
 
 struct StatGraphsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: [.init(confirmed: 20, deaths: 20, recovered: 19, date: Date())]))
+        StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: [.init(cases: 20, deaths: 20, recovered: 19, date: Date())]))
     }
 }

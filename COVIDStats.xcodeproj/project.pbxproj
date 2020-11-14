@@ -10,6 +10,7 @@
 		211599DC24F194AC001D7175 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211599DB24F194AC001D7175 /* Stats.swift */; };
 		211599DE24F19AD3001D7175 /* StatGraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211599DD24F19AD3001D7175 /* StatGraphsView.swift */; };
 		21557FB324EE619300708415 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 21557FB224EE619300708415 /* SwiftUICharts */; };
+		216D0B8B25604C9800428E77 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216D0B8A25604C9800428E77 /* ViewModel.swift */; };
 		218E0A2624E9704D000F3FBF /* COVIDStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A2524E9704D000F3FBF /* COVIDStatsApp.swift */; };
 		218E0A2824E9704D000F3FBF /* CountryStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A2724E9704D000F3FBF /* CountryStatsView.swift */; };
 		218E0A2A24E9704F000F3FBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218E0A2924E9704F000F3FBF /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		211599DB24F194AC001D7175 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		211599DD24F19AD3001D7175 /* StatGraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatGraphsView.swift; sourceTree = "<group>"; };
+		216D0B8A25604C9800428E77 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		218E0A2224E9704D000F3FBF /* COVIDStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E0A2524E9704D000F3FBF /* COVIDStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVIDStatsApp.swift; sourceTree = "<group>"; };
 		218E0A2724E9704D000F3FBF /* CountryStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryStatsView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				218E0A5124E9709E000F3FBF /* Fetcher.swift */,
 				211599DB24F194AC001D7175 /* Stats.swift */,
+				216D0B8A25604C9800428E77 /* ViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				211599DE24F19AD3001D7175 /* StatGraphsView.swift in Sources */,
 				211599DC24F194AC001D7175 /* Stats.swift in Sources */,
 				218E0A2624E9704D000F3FBF /* COVIDStatsApp.swift in Sources */,
+				216D0B8B25604C9800428E77 /* ViewModel.swift in Sources */,
 				218E0A5224E9709E000F3FBF /* Fetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
