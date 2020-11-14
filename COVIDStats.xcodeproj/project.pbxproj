@@ -3,16 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211599DC24F194AC001D7175 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211599DB24F194AC001D7175 /* Stats.swift */; };
+		211599DE24F19AD3001D7175 /* StatGraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211599DD24F19AD3001D7175 /* StatGraphsView.swift */; };
+		21557FB324EE619300708415 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 21557FB224EE619300708415 /* SwiftUICharts */; };
 		218E0A2624E9704D000F3FBF /* COVIDStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A2524E9704D000F3FBF /* COVIDStatsApp.swift */; };
-		218E0A2824E9704D000F3FBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A2724E9704D000F3FBF /* ContentView.swift */; };
+		218E0A2824E9704D000F3FBF /* CountryStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A2724E9704D000F3FBF /* CountryStatsView.swift */; };
 		218E0A2A24E9704F000F3FBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218E0A2924E9704F000F3FBF /* Assets.xcassets */; };
 		218E0A2D24E9704F000F3FBF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218E0A2C24E9704F000F3FBF /* Preview Assets.xcassets */; };
 		218E0A3824E97050000F3FBF /* COVIDStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A3724E97050000F3FBF /* COVIDStatsTests.swift */; };
 		218E0A4324E97050000F3FBF /* COVIDStatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A4224E97050000F3FBF /* COVIDStatsUITests.swift */; };
+		218E0A5224E9709E000F3FBF /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A5124E9709E000F3FBF /* Fetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		211599DB24F194AC001D7175 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		211599DD24F19AD3001D7175 /* StatGraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatGraphsView.swift; sourceTree = "<group>"; };
 		218E0A2224E9704D000F3FBF /* COVIDStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVIDStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E0A2524E9704D000F3FBF /* COVIDStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVIDStatsApp.swift; sourceTree = "<group>"; };
-		218E0A2724E9704D000F3FBF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		218E0A2724E9704D000F3FBF /* CountryStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryStatsView.swift; sourceTree = "<group>"; };
 		218E0A2924E9704F000F3FBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		218E0A2C24E9704F000F3FBF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		218E0A2E24E9704F000F3FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +51,7 @@
 		218E0A3E24E97050000F3FBF /* COVIDStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = COVIDStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E0A4224E97050000F3FBF /* COVIDStatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVIDStatsUITests.swift; sourceTree = "<group>"; };
 		218E0A4424E97050000F3FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		218E0A5124E9709E000F3FBF /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21557FB324EE619300708415 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +103,10 @@
 		218E0A2424E9704D000F3FBF /* COVIDStats */ = {
 			isa = PBXGroup;
 			children = (
+				218E0A5024E9708E000F3FBF /* Model */,
 				218E0A2524E9704D000F3FBF /* COVIDStatsApp.swift */,
-				218E0A2724E9704D000F3FBF /* ContentView.swift */,
+				218E0A2724E9704D000F3FBF /* CountryStatsView.swift */,
+				211599DD24F19AD3001D7175 /* StatGraphsView.swift */,
 				218E0A2924E9704F000F3FBF /* Assets.xcassets */,
 				218E0A2E24E9704F000F3FBF /* Info.plist */,
 				218E0A2B24E9704F000F3FBF /* Preview Content */,
@@ -130,6 +140,15 @@
 			path = COVIDStatsUITests;
 			sourceTree = "<group>";
 		};
+		218E0A5024E9708E000F3FBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				218E0A5124E9709E000F3FBF /* Fetcher.swift */,
+				211599DB24F194AC001D7175 /* Stats.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +165,9 @@
 			dependencies = (
 			);
 			name = COVIDStats;
+			packageProductDependencies = (
+				21557FB224EE619300708415 /* SwiftUICharts */,
+			);
 			productName = COVIDStats;
 			productReference = 218E0A2224E9704D000F3FBF /* COVIDStats.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 218E0A1924E9704D000F3FBF;
+			packageReferences = (
+				21557FB124EE619300708415 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 218E0A2324E9704D000F3FBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +284,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				218E0A2824E9704D000F3FBF /* ContentView.swift in Sources */,
+				218E0A2824E9704D000F3FBF /* CountryStatsView.swift in Sources */,
+				211599DE24F19AD3001D7175 /* StatGraphsView.swift in Sources */,
+				211599DC24F194AC001D7175 /* Stats.swift in Sources */,
 				218E0A2624E9704D000F3FBF /* COVIDStatsApp.swift in Sources */,
+				218E0A5224E9709E000F3FBF /* Fetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +608,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		21557FB124EE619300708415 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21557FB224EE619300708415 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21557FB124EE619300708415 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 218E0A1A24E9704D000F3FBF /* Project object */;
 }
