@@ -36,24 +36,34 @@ struct CountryStatsView: View {
     @State private var subscriptions = Set<AnyCancellable>()
     
     var body: some View {
-        ZStack {
-            Color(UIColor.systemGray6).edgesIgnoringSafeArea(.all)
-            
+        ScrollView {
             VStack(alignment: .leading){
-                VStack(alignment: .leading){
-                    Button(action: { self.countryPickerDisplayed.toggle() }, label: {
-                        HStack {
-                            Text(StatsViewModel.countryToCodeMap.keys.sorted()[self.countryPickerIndex]).font(.title).fontWeight(.bold)
-                        }
+                    VStack(alignment: .leading){
+                        Button(action: { self.countryPickerDisplayed.toggle() }, label: {
+                            HStack {
+                                Text(StatsViewModel.countryToCodeMap.keys.sorted()[self.countryPickerIndex]).font(.title).fontWeight(.bold)
+                            }
+                            
+                            Image(systemName: "chevron.down")
+                            
+                        })
+                        Text("Last Updated: \(lastUpdated)")
                         
-                        Image(systemName: "chevron.down")
-                        
-                    })
-                    Text("Last Updated: \(lastUpdated)")
+                    }.padding(.leading, 15)
+                
+    //                StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: Array.init(repeating: TimelineItem(cases: 20, deaths: Int.random(in: 0..<10), recovered: 19, date: Date()), count: 10)))
+                    if let countryStatistic = countryStatistic {
+                        StatGraphsView(countryStatistic: countryStatistic)
+                    }
                     
-                }.padding(.leading, 15)
-                .sheet(isPresented: self.$countryPickerDisplayed, onDismiss: {
+                    if let error = fetchCountryStatisticError {
+                        Text("Could not fetch country statistic: \(error.localizedDescription)")
+                            .font(.footnote)
+                            .foregroundColor(.red)
+                    }
+                }.sheet(isPresented: self.$countryPickerDisplayed, onDismiss: {
                     self.countryPickerDisplayed = false
+                    self.fetchCountryStatistic()
                 }) {
                     VStack {
                         HStack {
@@ -70,43 +80,22 @@ struct CountryStatsView: View {
                             })
                         })
                         .labelsHidden()
-                        .onChange(of: countryPickerIndex, perform: {_ in self.fetchCountryStatistic()})
                         Spacer()
                     }.padding(15)
-                }
-                
-                
-                
-                
-                //                StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: Array.init(repeating: Timeline.TimelineItem(confirmed: 20, deaths: Int.random(in: 0..<10), recovered: 19, date: Date()), count: 10)))
-                if let countryStatistic = countryStatistic {
-                    StatGraphsView(countryStatistic: countryStatistic)
-                }
-                
-                if let error = fetchCountryStatisticError {
-                    Text("Could not fetch country statistic: \(error.localizedDescription)")
-                        .font(.footnote)
-                        .foregroundColor(.red)
-                }
             }
         }
-    }
+        }
 }
 
 extension CountryStatsView {
     func fetchCountryStatistic(){
-        print("Fetching country statistic for \(selectedCountry)")
-        CovidAPI.timelineWithCombine(forCountryCode: selectedCountry)
-            .sink { (error) in
-                switch error {
-                case .failure(let error):
-                    self.fetchCountryStatisticError = error
-                default: break
-                }
-            } receiveValue: { (query: CovidQuery) in
-                self.countryStatistic = CountryStatistic(name: selectedCountry, code: selectedCountryCode, timeline: query.timeline.items)
-            }.store(in: &subscriptions)
-        
+        CovidAPI.timelineWithCombine(forCountryCode: selectedCountryCode)
+            .map { CountryStatistic(name: selectedCountry, code: selectedCountryCode, timeline: $0.timeline.items) }
+            .print("Country Statistic for \(selectedCountry)")
+            .sink(receiveCompletion: { if case let .failure(error) = $0 {  self.fetchCountryStatisticError = error } }, receiveValue: { (countryStatistic: CountryStatistic) in
+                self.countryStatistic = countryStatistic
+            })
+            .store(in: &subscriptions)
     }
 }
 

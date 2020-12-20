@@ -15,20 +15,23 @@ struct StatGraphsView: View {
     var countryStatistic: CountryStatistic
     
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                
-                LineChartView(data: countryStatistic.cases.map { Double($0) }, title: "Cases", rateValue: nil)
-                LineChartView(data: countryStatistic.deaths.map { Double($0) }, title: "Deaths", rateValue: nil)
-                LineChartView(data: countryStatistic.recovered.map { Double($0) }, title: "Recovered", rateValue: nil)
-                
-            }.padding(self.padding)
+
+        VStack {
+            IndividualGraphView(chartData: countryStatistic.activeCasesAndDates.map { ($0.0.shortDateString, Double($0.1)) }, chartTitle: "Current Cases")
+
+
+            IndividualGraphView(chartData: countryStatistic.deathAndDates.map { ($0.0.shortDateString, Double($0.1)) }, chartTitle: "Cumulative Deaths")
+
+            IndividualGraphView(chartData: countryStatistic.recoveredAndDates.map { ($0.0.shortDateString, Double($0.1)) }, chartTitle: "Cumulative Recovered")
+
         }
     }
 }
 
 struct StatGraphsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: [.init(cases: 20, deaths: 20, recovered: 19, date: Date())]))
+        StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", code: "Test", timeline: Array(0...20).map { _ in
+            .init(cases: Int.random(in: 0...1000), deaths: Int.random(in: 0...1000), recovered: Int.random(in: 0...1000), date: Date().addingTimeInterval(Double.random(in: 0...100000000)))
+        }))
     }
 }

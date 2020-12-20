@@ -1,19 +1,269 @@
 //
-//  Stats.swift
+//  Country.swif.swift
 //  COVIDStats
-//  The main model for our application, which will hold the different countries we would like to fetch statistics from,
-//  as well as user settings on notifications and location preferences.
 //
-//
-//  Created by Aaron Baw on 22/08/2020.
+//  Created by Aaron Baw on 20/12/2020.
 //
 
 import Foundation
 
-class StatsViewModel: ObservableObject {
+enum Country {
     
-    @Published var countries: [CountryStatistic] = []
+    case taiwanOf
+    case virginIslands
+    case réunion
+    case ghana
+    case yemen
+    case costaRica
+    case ethiopia
+    case australia
+    case egypt
+    case belgium
+    case mayotte
+    case sanMarino
+    case cameroon
+    case svalbardAndJanMayen
+    case turkey
+    case luxembourg
+    case angola
+    case dominicanRepublic
+    case timorleste
+    case trinidadAndTobago
+    case unitedStatesMinorOutlyingIslands
+    case belize
+    case kazakhstan
+    case tokelau
+    case malta
+    case azerbaijan
+    case afghanistan
+    case equatorialGuinea
+    case uzbekistan
+    case isleOfMan
+    case jersey
+    case frenchPolynesia
+    case koreaDemocraticPeoplesRepublic
+    case westernSahara
+    case togo
+    case congoDemocraticRepublicOf
+    case iraq
+    case micronesiaStates
+    case côteDivoire
+    case latvia
+    case finland
+    case pakistan
+    case tanzania,UnitedRepublicOf
+    case iranRepublic
+    case uganda
+    case tonga
+    case eswatini
+    case italy
+    case iceland
+    case spain
+    case montenegro
+    case hongKong
+    case southGeorgiaAndTheSouthSandwichIslands
+    case fiji
+    case libya
+    case solomonIslands
+    case honduras
+    case rwanda
+    case ukraine
+    case vanuatu
+    case laoPeoplesDemocraticRepublic
+    case republicOfNorthMacedonia
+    case southAfrica
+    case algeria
+    case ecuador
+    case bhutan
+    case myanmar
+    case sudan
+    case frenchGuiana
+    case mauritius
+    case norfolkIsland
+    case bosniaAndHerzegovina
+    case oman
+    case tajikistan
+    case caymanIslands
+    case grenada
+    case netherlands
+    case newCaledonia
+    case madagascar
+    case centralAfricanRepublic
+    case wallisAndFutuna
+    case saintLucia
+    case curaçao
+    case cocosIslands
+    case gambia
+    case mali
+    case martinique
+    case bermuda
+    case monaco
+    case holySee
+    case britishIndianOceanTerritory
+    case suriname
+    case malaysia
+    case liechtenstein
+    case saintKittsAndNevis
+    case montserrat
+    case serbia
+    case southSudan
+    case unitedArabEmirates
+    case brazil
+    case moldovaRepublic
+    case nicaragua
+    case japan
+    case northernMarianaIslands
+    case bonaire,SintEustatiusAndSaba
+    case bangladesh
+    case cambodia
+    case chile
+    case lesotho
+    case guernsey
+    case peru
+    case mexico
+    case panama
+    case botswana
+    case seychelles
+    case georgia
+    case koreaRepublic
+    case kuwait
+    case qatar
+    case chad
+    case gabon
+    case senegal
+    case philippines
+    case colombia
+    case saintBarthélemy
+    case cuba
+    case saintVincentAndTheGrenadines
+    case argentina
+    case guatemala
+    case israel
+    case saintPierreAndMiquelon
+    case americanSamoa
+    case morocco
+    case nepal
+    case portugal
+    case maldives
+    case cookIslands
+    case guadeloupe
+    case greece
+    case romania
+    case zambia
+    case lebanon
+    case unitedStatesOfAmerica
+    case croatia
+    case heardIslandAndMcdonaldIslands
+    case guam
+    case marshallIslands
+    case turksAndCaicosIslands
+    case uruguay
+    case benin
+    case elSalvador
+    case djibouti
+    case sriLanka
+    case greenland
+    case kyrgyzstan
+    case tuvalu
+    case india
+    case saoTomeAndPrincipe
+    case bahrain
+    case christmasIsland
+    case czechia
+    case thailand
+    case armenia
+    case kiribati
+    case guyana
+    case ireland
+    case congo
+    case slovakia
+    case china
+    case tunisia
+    case venezuelaRepublic
+    case france
+    case antarctica
+    case palestine,StateOf
+    case poland
+    case frenchSouthernTerritories
+    case falklandIslands
+    case caboVerde
+    case sierraLeone
+    case ålandIslands
+    case denmark
+    case andorra
+    case gibraltar
+    case puertoRico
+    case austria
+    case bruneiDarussalam
+    case jamaica
+    case somalia
+    case bahamas
+    case estonia
+    case cyprus
+    case newZealand
+    case burundi
+    case sweden
+    case samoa
+    case switzerland
+    case macao
+    case faroeIslands
+    case indonesia
+    case kenya
+    case hungary
+    case slovenia
+    case dominica
+    case niger
+    case guineaBissau
+    case pitcairn
+    case mauritania
+    case paraguay
+    case burkinaFaso
+    case comoros
+    case nauru
+    case papuaNewGuinea
+    case boliviaState
+    case singapore
+    case jordan
+    case eritrea
+    case norway
+    case nigeria
+    case saintHelena,AscensionAndTristanDaCunha
+    case zimbabwe
+    case mozambique
+    case palau
+    case bulgaria
+    case liberia
+    case anguilla
+    case barbados
+    case antiguaAndBarbuda
+    case russianFederation
+    case saintMartin
+    case bouvetIsland
+    case guinea
+    case mongolia
+    case belarus
+    case aruba
+    case lithuania
+    case canada
+    case germany
+    case syrianArabRepublic
+    case niue
+    case sintMaarten
+    case vietNam
+    case turkmenistan
+    case malawi
+    case namibia
+    case unitedKingdomOfGreatBritainAndNorthernIreland
+    case albania
+    case saudiArabia
+    case haiti
     
+//    var longName: String {
+//        switch self {
+//            
+//        }
+//    }
+
     static var codes = ["AFG","ALB","DZA","ASM","AND","AGO","AIA","ATA","ATG","ARG","ARM","ABW","AUS","AUT","AZE","BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BMU","BTN","BOL","BES","BIH","BWA","BVT","BRA","IOT","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CYM","CAF","TCD","CHL","CHN","CXR","CCK","COL","COM","COD","COG","COK","CRI","HRV","CUB","CUW","CYP","CZE","CIV","DNK","DJI","DMA","DOM","ECU","EGY","SLV","GNQ","ERI","EST","SWZ","ETH","FLK","FRO","FJI","FIN","FRA","GUF","PYF","ATF","GAB","GMB","GEO","DEU","GHA","GIB","GRC","GRL","GRD","GLP","GUM","GTM","GGY","GIN","GNB","GUY","HTI","HMD","VAT","HND","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","IMN","ISR","ITA","JAM","JPN","JEY","JOR","KAZ","KEN","KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY","LIE","LTU","LUX","MAC","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MTQ","MRT","MUS","MYT","MEX","FSM","MDA","MCO","MNG","MNE","MSR","MAR","MOZ","MMR","NAM","NRU","NPL","NLD","NCL","NZL","NIC","NER","NGA","NIU","NFK","MNP","NOR","OMN","PAK","PLW","PSE","PAN","PNG","PRY","PER","PHL","PCN","POL","PRT","PRI","QAT","MKD","ROU","RUS","RWA","REU","BLM","SHN","KNA","LCA","MAF","SPM","VCT","WSM","SMR","STP","SAU","SEN","SRB","SYC","SLE","SGP","SXM","SVK","SVN","SLB","SOM","ZAF","SGS","SSD","ESP","LKA","SDN","SUR","SJM","SWE","CHE","SYR","TWN","TJK","TZA","THA","TLS","TGO","TKL","TON","TTO","TUN","TUR","TKM","TCA","TUV","UGA","UKR","ARE","GBR","UMI","USA","URY","UZB","VUT","VEN","VNM","VGB","VIR","WLF","ESH","YEM","ZMB","ZWE","ALA"]
     
     static var countryToCodeMap = [
@@ -250,9 +500,9 @@ class StatsViewModel: ObservableObject {
         "Uganda": "UGA",
         "Ukraine": "UKR",
         "United Arab Emirates (the)": "ARE",
-        "United Kingdom": "GBR",
+        "United Kingdom of Great Britain and Northern Ireland (the)": "GBR",
         "United States Minor Outlying Islands (the)": "UMI",
-        "United States of America": "USA",
+        "United States of America (the)": "USA",
         "Uruguay": "URY",
         "Uzbekistan": "UZB",
         "Vanuatu": "VUT",
@@ -268,61 +518,3 @@ class StatsViewModel: ObservableObject {
         "Åland Islands": "ALA"
       ]
 }
-
-struct CountryStatistic {
-    
-    var name: String
-    
-    var code: String
-    
-    let timeline: [TimelineItem]
-    
-    // MARK: - Computed Properties
-    
-    var deaths: [Int] { timeline.map { $0.deaths } }
-    var deathAndDates: [(Date, Int)] { zip(timeline.map(\.date), timeline.map(\.deaths)).map { $0 } }
-    
-    var newDeaths: [Int] { deaths.suffix(deaths.count).map { $0 - deaths[deaths.firstIndex(of: $0) ?? 0 - 1] } }
-    var newDeathsAndDates: [(Date, Int)] { zip(timeline.map(\.date), newDeaths).map { $0 } }
-    
-    var cases: [Int] { timeline.map { $0.cases } }
-    var casesAndDates: [(Date, Int)] { zip(timeline.map(\.date), timeline.map(\.cases)).map { $0 } }
-    
-    var newCases: [Int] { cases.enumerated().map { (index, element) in index == 0 ? element : element - cases[index - 1] } }
-    var newCasesAndDates: [(Date, Int)] { zip(timeline.map(\.date), newCases).map { $0 } }
-
-    var activeCases: [Int] { zip(cases, recovered).map { $0 - $1 } }
-    var activeCasesAndDates: [(Date, Int)] { zip(timeline.map(\.date), activeCases).map { $0 } }
-    
-    var recovered: [Int] { timeline.map { $0.recovered } }
-    var recoveredAndDates: [(Date, Int)] { zip(timeline.map(\.date), timeline.map(\.recovered)).map { $0 } }
-    
-    var newRecovered: [Int] { recovered.enumerated().map { (index, element) in index == 0 ? element : element - recovered[index - 1] } }
-    var newRecoveredAndDates: [(Date, Int)] { zip(timeline.map(\.date), newRecovered).map { $0 } }
-
-    var casesToday: Int { self.activeCases.last ?? 0 }
-    
-}
-
-extension CountryStatistic {
-    enum ChartType: String {
-        case cumulativeDeaths = "Total Deaths"
-        case newDeaths = "New Deaths"
-        case activeCases = "Active Cases"
-        case cumulativeRecovered = "Total Recovered"
-        case newlyRecovered = "Newly Recovered"
-
-        var description: String { self.rawValue }
-    }
-
-    func chartData(forType type: ChartType) -> [(Date, Int)] {
-        switch type {
-        case .cumulativeDeaths: return deathAndDates
-        case .newDeaths: return newDeathsAndDates
-        case .activeCases: return activeCasesAndDates
-        case .cumulativeRecovered: return recoveredAndDates
-        case .newlyRecovered: return newRecoveredAndDates
-        }
-    }
-}
-

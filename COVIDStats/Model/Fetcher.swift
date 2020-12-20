@@ -18,15 +18,15 @@ let CountryCodeMap: [String:String] = [
 struct CovidQuery: Decodable {
     
 
-    let timeline: Timeline
+    let timeline: CovidTimeline
     let country: String
-    let province: [String]
+//    let province: [String]?
     
     // Typically, the CodingKeys are defined as an enumeration in Swift, with conformance
     // to the string protocol. Because we have a potentially infinite number of coding keys, we need to instead create a nested structure which conforms to the protocol.
 }
 
-struct Timeline {
+struct CovidTimeline {
     var items: [TimelineItem]
     
     struct Keys: CodingKey {
@@ -49,7 +49,7 @@ struct Timeline {
     }
 }
 
-extension Timeline: Decodable {
+extension CovidTimeline: Decodable {
 
     init(from decoder: Decoder) throws {
 
@@ -100,30 +100,7 @@ extension Timeline: Decodable {
             }
         }
         
-        self.items = timelineDict.values.map { $0 }
-        
-        // This array will be a list of all the dates included in the JSON, as strings.
-//        for key in container.allKeys {
-//
-//            print("Coding key:", key.stringValue)
-//
-//            // Fetch the nested content. We create a new key and use this to fetch the nested container.
-//            let nestedContainer = try container.nestedContainer(keyedBy: String.self, forKey: TimelineItemKeys(stringValue: key.stringValue)!)
-//
-//            // Convert the string value of the key to a date representation.
-//            let date = dateFormatter.date(from: key.stringValue)!
-//
-//            // Fetch the static keys.
-//            let confirmed = try nestedContainer.decode(Int.self, forKey: .confirmed)
-//            let deaths = try nestedContainer.decode(Int.self, forKey: .deaths)
-//            let recovered = try nestedContainer.decode(Int.self, forKey: .recovered)
-//
-//            // Create the timeline item object.
-//            let timelineItem = TimelineItem(confirmed: confirmed, deaths: deaths, recovered: recovered, date: date)
-//
-//            self.items.append(timelineItem)
-//
-//        }
+        self.items = timelineDict.values.map { $0 }.sorted(by: { first, second in first.date < second.date })
 
     }
 
@@ -167,10 +144,11 @@ struct CovidAPI {
         var url: URL {
             switch self {
             case let .JHU(country):
-                if country.lowercased() == "gibraltar" || country.lowercased() == "gi" { return
-                    URL(string: "https://disease.sh/v3/covid-19/historical/uk/gibraltar?lastaays=all)")!
+                print(country)
+                if country.lowercased() == "gibraltar" || country.lowercased() == "gi" || country.lowercased() == "gib" {
+                    return URL(string: "https://disease.sh/v3/covid-19/historical/uk/gibraltar?lastdays=all)")!
                 }
-                return URL(string: "https://disease.sh/v3/covid-19/historical/\(country)?lastdays=all")!
+                return URL(string: "https://disease.sh/v3/covid-19/historical/\(country.replacingOccurrences(of: " ", with: "%20"))?lastdays=all")!
             case let .COVIDTrackerAPI(country): return URL(string: "https://covidapi.info/api/v1/country/\(country)")!
             case let .VirusTracker(country): return URL(string: "https://thevirustracker.com/free-api?countryTimeline=\(country)")!
             }
@@ -209,6 +187,15 @@ struct CovidAPI {
         }
     }
 
+    static func timeline(forCountryCode countryCode: String, completionHandler: @escaping (CovidQuery) -> Void){
+        URLSession.shared.dataTask(with: Endpoint.JHU(country: countryCode).url) { (data, _, error) in
+            guard error == nil else { print(error?.localizedDescription ?? "Error unavailable."); return }
+            guard let data = data else { return }
+            guard let covidQuery = try? JSONDecoder().decode(CovidQuery.self, from: data) else { return }
+            completionHandler(covidQuery)
+        }.resume()
+    }
+
     static func timelineWithCombine(forCountryCode countryCode: String) -> AnyPublisher<CovidQuery, Agent.CovidError> {
         
         return agent.run(Endpoint.JHU(country: countryCode).urlRequest)
@@ -220,30 +207,6 @@ struct CovidAPI {
 
     }
 
-}
-
-/// Networking extensions for obtaining timeline with URLSession.
-extension CovidAPI {
-//    func timeline(forCountryCode countryCode: String, completionHandler: @escaping (Timeline) -> Void) {
-//
-//        let urlString = CovidAPI.getTimelineAPIUrl(forCountryCode: countryCode)
-//        let url = URL(string: urlString)!
-//
-//        let jsonDecoder = JSONDecoder()
-//
-//        URLSession.shared.dataTask(with: url, completionHandler: {data, _, error in
-//            if let error = error {
-//                print("Could not fetch Covid Timeline for country code \(countryCode): \(error.localizedDescription)")
-//            }
-//
-//            if let data = data {
-//                if let timeline = try? jsonDecoder.decode(Timeline.self, from: data) {
-//                    completionHandler(timeline)
-//                }
-//            }
-//
-//        }).resume()
-//    }
 }
 
 
