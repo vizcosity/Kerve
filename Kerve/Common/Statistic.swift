@@ -42,12 +42,11 @@ struct Statistic: Hashable {
     }
 }
 
-#if DEBUG
 extension Statistic {
     static var mockPercentageChange: Statistic {
         .init(
-            value: 0.21,
-            label: "Active Cases", delta: 0.23,
+            value: 0.12413,
+            label: "Active Cases", delta: 0.00021,
             kind: .percentage
         )
     }
@@ -55,8 +54,8 @@ extension Statistic {
     static var mock: Statistic {
         .init(
             value: 21,
-            label: "Active Cases", delta: 0.23,
-            kind: .percentage
+            label: "Active Cases", delta: 0.2,
+            kind: .raw
         )
     }
 
@@ -64,4 +63,3 @@ extension Statistic {
         .init(value: 28, label: "Total Recovered", delta: 12, increaseIsPositive: true, kind: .raw)
     }
 }
-#endif

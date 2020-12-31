@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct StatisticBlockView: View {
-
+    
     @Environment(\.colorScheme) var colorScheme
-
+    
     let statistics: [Statistic]
-
-    private func content(for statistic: Statistic) -> some View {
-        VStack(alignment: .center)  {
+    
+    private func innerBlockContent(for statistic: Statistic) -> some View {
+        Group {
             Text(statistic.valueFormattedAsString)
                 .font(.system(.title, design: .rounded))
                 .bold()
             
-            if statistic.delta != nil {
+            if statistic.delta != nil && statistic.delta! != 0 {
                 Label(
                     title: { Text(statistic.deltaFormattedAsString)
                         .font(.system(.body, design: .rounded))
@@ -32,17 +32,36 @@ struct StatisticBlockView: View {
                     }
                 )
             }
-            
-            Text(statistic.label)
+//            Spacer()
+        }
+    }
+    
+    private func content(for statistic: Statistic) -> some View {
+        GroupBox(
+            label:  Text(statistic.label)
                 .font(Font.system(.caption2, design: .rounded).bold())
                 .foregroundColor(.secondary)
-                .padding(.top, 5)
-        }
-        .aspectRatio(1, contentMode: .fit)
-        .font(.title)
-        .foregroundColor(.primary)
+            ,
+            content: {
+                if statistic.valueFormattedAsString.count > 4 || statistic.deltaFormattedAsString.count > 4 {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            innerBlockContent(for: statistic)
+                        }
+                        Spacer()
+                    }
+                } else {
+                    VStack {
+                    HStack(alignment: .center) {
+                        innerBlockContent(for: statistic)
+                        Spacer()
+                    }
+                        Text("DummyText").font(.body).opacity(0).accessibility(hidden: true)
+                    }
+                }
+            }).groupBoxStyle(GradientGroupBoxStyle(gradientType: statistic.positiveChange ? .positive : .negative))
     }
-
+    
     var body: some View {
         HStack(alignment: .center) {
             ForEach(statistics, id: \.self) {
@@ -51,17 +70,15 @@ struct StatisticBlockView: View {
             }
         }
         .frame(maxWidth: statistics.count > 1 ? .infinity : nil)
-        .padding()
-        .background(colorScheme == .dark ? Color(.tertiarySystemBackground) : Color(.systemGroupedBackground))
+        //        .background(colorScheme == .dark ? Color(.tertiarySystemBackground) : Color(.systemGroupedBackground))
         .cornerRadius(Constants.defaultCornerRadius)
-//                .aspectRatio(1, contentMode: .fit)
-
+        
     }
-
+    
     init(statistic: Statistic){
         self.statistics = [statistic]
     }
-
+    
     init(statistics: [Statistic]){
         self.statistics = statistics
     }
@@ -74,8 +91,8 @@ struct StatisticBlockView_Previews: PreviewProvider {
             StatisticBlockView(statistic: .mock)
             StatisticBlockView(statistics: [.mock, .mockPercentageChange]).preferredColorScheme(.dark)
             
-        }
-//        .previewLayout(.sizeThatFits)
+        }.frame(maxHeight: .infinity)
+        //        .previewLayout(.sizeThatFits)
         .padding()
     }
 }

@@ -151,7 +151,6 @@ struct TimelineItem {
     }
 }
 
-#if DEBUG
 extension TimelineItem {
     static var random: TimelineItem {
         let randomInt = Int.random(in: 0...100)
@@ -164,7 +163,6 @@ extension TimelineItem {
         
     }
 }
-#endif
 
 /// Add networking core.
 struct CovidAPI {
@@ -173,22 +171,34 @@ struct CovidAPI {
         case JHU(country: String)
         case COVIDTrackerAPI(country: String)
         case VirusTracker(country: String)
+        case RestCountries
         
-        var url: URL {
+        var url: URL? {
             switch self {
             case let .JHU(country):
                 print(country)
                 if country.lowercased() == "gibraltar" || country.lowercased() == "gi" || country.lowercased() == "gib" {
-                    return URL(string: "https://disease.sh/v3/covid-19/historical/uk/gibraltar?lastdays=all)")!
+                    return URL(string: "https://disease.sh/v3/covid-19/historical/uk/gibraltar?lastdays=all)")
                 }
-                return URL(string: "https://disease.sh/v3/covid-19/historical/\(country.replacingOccurrences(of: " ", with: "%20"))?lastdays=all")!
-            case let .COVIDTrackerAPI(country): return URL(string: "https://covidapi.info/api/v1/country/\(country)")!
-            case let .VirusTracker(country): return URL(string: "https://thevirustracker.com/free-api?countryTimeline=\(country)")!
+                return URL(string: "https://disease.sh/v3/covid-19/historical/\(country.replacingOccurrences(of: " ", with: "%20"))?lastdays=all")
+            case let .COVIDTrackerAPI(country): return URL(string: "https://covidapi.info/api/v1/country/\(country)")
+            case let .VirusTracker(country): return URL(string: "https://thevirustracker.com/free-api?countryTimeline=\(country)")
+            case .RestCountries: return URL(string: "https://restcountries-v1.p.rapidapi.com/all")
             }
         }
         
-        var urlRequest: URLRequest {
-            URLRequest(url: self.url)
+        var urlRequest: URLRequest? {
+            guard let url = self.url else { return nil }
+            switch self {
+            case .RestCountries:
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = [
+                    "x-rapidapi-key": "lBa6SK5xI5mshKKSGGeA0ADA4Hncp1KNo41jsnxBWvjJTaoKfW",
+                    "x-rapidapi-host": "restcountries-v1.p.rapidapi.com"
+                ]
+                return request
+            default: return URLRequest(url: url)
+            }
         }
     }
 
@@ -204,12 +214,14 @@ struct CovidAPI {
         
         enum CovidError: Error {
             case sessionError(error: Error)
+            case cannotFetchCountry
+            case urlEncodingError
         }
         
         // When calling the function, we are specifying the type that we would like to return.
         // When decoding the instance, we use the type as the type that we would like to decode into.
-        func run<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
-            print("Requesting", request.debugDescription)
+        func run<T: Decodable>(_ request: URLRequest?, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
+            guard let request = request else { return Fail(error: CovidError.urlEncodingError).eraseToAnyPublisher() }
             return URLSession.shared.dataTaskPublisher(for: request).tryMap {
                 response -> Response<T> in
                 print("Attempting to decode reponse", response)
@@ -221,7 +233,8 @@ struct CovidAPI {
     }
 
     static func timeline(for country: String, completionHandler: @escaping (CovidQuery) -> Void){
-        URLSession.shared.dataTask(with: Endpoint.JHU(country: country).url) { (data, _, error) in
+        guard let url = Endpoint.JHU(country: country).url else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard error == nil else { print(error?.localizedDescription ?? "Error unavailable."); return }
             guard let data = data else { return }
             guard let covidQuery = try? JSONDecoder().decode(CovidQuery.self, from: data) else { return }
@@ -233,11 +246,58 @@ struct CovidAPI {
         
         return agent.run(Endpoint.JHU(country: country).urlRequest)
             .map(\.value)
-            .eraseToAnyPublisher()
             .mapError { (error) -> Agent.CovidError in
                 return Agent.CovidError.sessionError(error: error)
             }.eraseToAnyPublisher()
 
+    }
+
+    static func countryDetails(completionHandler: @escaping (CountryDetails) -> Void) {
+        guard let url = Endpoint.RestCountries.url else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard error == nil else { print(error?.localizedDescription ?? "Error unavailable."); return }
+            guard let data = data else { return }
+            guard let countryDetails = try? JSONDecoder().decode(CountryDetails.self, from: data) else { return }
+            completionHandler(countryDetails)
+        }.resume()
+    }
+
+    static func countryDetail(for country: String, completionHandler: @escaping (CountryDetail) -> Void) {
+        countryDetails(completionHandler: {
+            guard let countryDetail = $0.first(where: { $0.matches(country) }) else { return }
+            completionHandler(countryDetail)
+        })
+    }
+
+    static func countryDetails() -> AnyPublisher<CountryDetails, Agent.CovidError> {
+        return agent.run(Endpoint.RestCountries.urlRequest)
+//            .print()
+            .map(\.value)
+            .mapError { error in Agent.CovidError.sessionError(error: error) }
+            .eraseToAnyPublisher()
+    }
+
+    static func countryStatistic(for country: String, completionHandler: @escaping (CountryStatistic) -> Void) {
+        timeline(for: country, completionHandler: { query in
+            countryDetail(for: country, completionHandler: { countryDetail in
+                completionHandler(CountryStatistic(query, countryDetail: countryDetail))
+            })
+        })
+    }
+
+    static func countryDetail(for country: String) -> AnyPublisher<CountryDetail, Agent.CovidError> {
+        return countryDetails()
+            .compactMap { (countryDetails: CountryDetails) in
+                countryDetails.first(where: { $0.matches(country) })
+            }
+            .eraseToAnyPublisher()
+    }
+
+    static func countryStatistic(for country: String) -> AnyPublisher<CountryStatistic, Agent.CovidError> {
+        return timeline(for: country)
+            .combineLatest(countryDetail(for: country))
+            .map { CountryStatistic($0.0, countryDetail: $0.1) }
+            .eraseToAnyPublisher()
     }
 
 }

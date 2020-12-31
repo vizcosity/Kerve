@@ -24,10 +24,7 @@ struct Provider: IntentTimelineProvider {
         print("Fetching snapshot.")
         CovidAPI.timeline(for: configuration.countryShortCode ?? "ESP") { (query: CovidQuery) in
             let currentDate = Date()
-            let countryStatistic = CountryStatistic(
-                name: configuration.countryShortCode ?? "Unknown",
-                timeline: query.timeline.items
-            )
+            let countryStatistic = CountryStatistic(query)
             let entry = NumbersEntry(
                 date: currentDate,
                 countryStatistic: countryStatistic,
@@ -69,6 +66,18 @@ struct NumbersEntry: TimelineEntry {
     let configuration: ConfigurationIntent
     
     var location: String { configuration.countryShortCode ?? "Unknown" }
+    var chartType: CountryStatistic.ChartType { .init(fromIntentEnum: configuration) }
+    var dateRange: CountryStatistic.DateRange { .init(fromIntentEnum: configuration) }
+    var widgetURL: URL {
+        let queryItems = [
+            URLQueryItem(name: "country", value: countryStatistic.country.rawValue),
+            URLQueryItem(name: "chartType", value: chartType.rawValue),
+            URLQueryItem(name: "dateRange", value: dateRange.rawValue)
+        ]
+        var urlComponents = URLComponents(string: "kerveapp:graphView")!
+        urlComponents.queryItems = queryItems
+        return urlComponents.url!
+    }
 }
 
 @main
@@ -77,7 +86,8 @@ struct NumbersWidget: Widget {
     
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            KerveGraphView(entry.countryStatistic, chartType: .init(fromIntentEnum: entry.configuration), dateRange: .init(fromIntentEnum: entry.configuration))
+            KerveGraphView(entry.countryStatistic, chartType: entry.chartType, dateRange: entry.dateRange)
+                .widgetURL(entry.widgetURL)
         }
         .configurationDisplayName("Kerve Widget")
         .description("View cases, deaths, and newly recovered statistics for COVID-19.")

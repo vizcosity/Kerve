@@ -18,6 +18,8 @@ struct Constants {
     static let defaultProgressBarHeight: CGFloat = 10
     static let defaultProgressBarRadius: CGFloat = 6
     static let defaultCornerRadius: CGFloat = 10
+    static let defaultBlurRadius: CGFloat = 50
+    static let pickerOptionVerticalPadding: CGFloat = 5
 
     static let defaultMaxNumberOfPoints: Int = 20
     
@@ -45,24 +47,8 @@ struct Colour {
     ]
 
     static func backgroundColor(_ colorScheme: ColorScheme) -> Color {
-        colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
-    }
-}
-
-struct BackgroundViewWrapper<Children>: View where Children: View {
-    var children: () -> Children
-    
-    // ViewBuilder allows us to access the child views instantiated through the use of a closure. The closure passed as an argument to the initialiser here will outlive the constructor itself (as the child objects can mutate or change), and so this requires the '@escaping' property wrapper.
-    init(@ViewBuilder children: @escaping () -> Children){
-        self.children = children
-    }
-    
-    var body: some View {
-        ZStack {
-            Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all)
-            self.children()
-            
-        }
+//        colorScheme == .dark ? Color(UIColor.secondarySystemBackground) : Color(UIColor.systemBackground)
+        Color("systemBackground")
     }
 }
 

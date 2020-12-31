@@ -272,10 +272,22 @@ class StatsViewModel: ObservableObject {
 struct CountryStatistic {
     
     var name: String
+    var country: Country { Country.init(rawValue: name) ?? .unknown }
+    var detail: CountryDetail?
     var code: String? { Country.init(rawValue: name.capitalized)?.code }
+    var populationSize: Int?
         
     let timeline: [TimelineItem]
     
+}
+
+extension CountryStatistic {
+    init(_ query: CovidQuery, countryDetail: CountryDetail? = nil) {
+        self.init(name: query.country, detail: countryDetail, timeline: query.timeline.items)
+    }
+}
+
+extension CountryStatistic {
     // MARK: - Computed Properties
     
     var deaths: [Int] { timeline.map { $0.deaths } }
@@ -299,13 +311,50 @@ struct CountryStatistic {
     var newRecovered: [Int] { recovered.enumerated().map { (index, element) in index == 0 ? element : element - recovered[index - 1] } }
     var newRecoveredAndDates: [(Date, Int)] { zip(timeline.map(\.date), newRecovered).map { $0 } }
 
-    var casesToday: Int { self.activeCases.last ?? 0 }
+    var mortalityRate: [Double] { zip(deaths, cases).map { Double($0.0) / Double(max(1, $0.1)) } }
+    var mortalityRateAndDates: [(Date, Double)] { zip(timeline.map(\.date), mortalityRate).map { $0 } }
+
+    var deathsPer100kPopulation: [Int]? {
+        guard let populationSize = detail?.population else { return nil }
+        return newDeaths.map { Int((100_000 / Double(populationSize) * Double($0))) }
+    }
+    var deathsPer100kPopulationAndDates: [(Date, Int)]? {
+        guard let deathsPer100kPopulation = deathsPer100kPopulation else { return nil }
+        return zip(timeline.map(\.date), deathsPer100kPopulation).map { $0 }
+    }
+
+    var casesPer100kPopulation: [Int]? {
+        guard let populationSize = detail?.population else { return nil }
+        return activeCases.map { Int((100_000 / Double(populationSize) * Double($0))) }
+    }
+    var casesPer100kPopulationAndDates: [(Date, Int)]? {
+        guard let casesPer100kPopulation = casesPer100kPopulation else { return nil }
+        return zip(timeline.map(\.date), casesPer100kPopulation).map { $0 }
+    }
+
+    var populationInfected: [Double]? {
+        guard let populationSize = populationSize else { return nil }
+        return activeCases.map { Double($0)/Double(populationSize) }
+    }
+    var populationInfectedAndDates: [(Date, Double)]? {
+        guard let populationInfected = populationInfected else { return nil }
+        return zip(timeline.map(\.date), populationInfected).map { $0 }
+    }
+
+    // MARK: - Derived Properties and Statistics
+    var casesToday: Statistic { Statistic(value: Double(activeCases.last ?? 0), label: "Cases Today", delta: Double(diff(for: activeCases)), increaseIsPositive: false, kind: .raw) }
+    var deathsToday: Statistic { .init(value: Double(newDeaths.last ?? 0), label: "Deaths Today", delta: Double(diff(for: newDeaths)), increaseIsPositive: false, kind: .raw) }
+    var recoveriesToday: Statistic { .init(value: Double(newRecovered.last ?? 0), label: "Recoveries Today", delta: nil, increaseIsPositive: true, kind: .raw) }
+    var mortalityRateToday: Statistic { .init(value: Double(mortalityRate.last ?? 0), label: "Mortality Rate", delta: Double(diff(for: mortalityRate)), increaseIsPositive: false, kind: .percentage) }
+    var deathsPer100kToday: Statistic { .init(value: Double(deathsPer100kPopulation?.last ?? 0), label: "Deaths Per 100k", delta: Double(diff(for: deathsPer100kPopulation ?? [])), increaseIsPositive: false, kind: .raw) }
+    var casesPer100kToday: Statistic { .init(value: Double(casesPer100kPopulation?.last ?? 0), label: "Cases Per 100k", delta: Double(diff(for: casesPer100kPopulation ?? [])), increaseIsPositive: false, kind: .raw)}
+    var populationInfectedToday: Statistic? { populationInfected == nil ? nil : .init(value: Double(populationInfected!.last ?? 0), label: "Population Infected", delta: Double(diff(for: populationInfected!)), increaseIsPositive: false, kind: .percentage) }
     
 }
 
 extension CountryStatistic {
     
-    enum ChartType: String {
+    enum ChartType: String, CaseIterable, Hashable {
         case cumulativeDeaths = "Total Deaths"
         case newDeaths = "New Deaths"
         case activeCases = "Active Cases"
@@ -314,21 +363,9 @@ extension CountryStatistic {
         case newlyRecovered = "Newly Recovered"
 
         var description: String { self.rawValue }
-
-        init(fromIntentEnum enumValue: ConfigurationIntent){
-            switch enumValue.chartType {
-            case .activeCases: self = .activeCases
-            case .totalCases: self = .cumulativeCases
-            case .totalDeaths: self = .cumulativeDeaths
-            case .newDeaths: self = .newDeaths
-            case .totalRecovered: self = .cumulativeRecovered
-            case .newlyRecovered: self = .newlyRecovered
-            default: self = .activeCases
-            }
-        }
     }
 
-    enum DateRange: String {
+    enum DateRange: String, CaseIterable {
         case week = "Week"
         case twoWeeks = "Last Two Weeks"
         case month = "Last Month"
@@ -337,14 +374,13 @@ extension CountryStatistic {
 
         var description: String { self.rawValue }
 
-        init(fromIntentEnum enumValue: ConfigurationIntent){
-            switch enumValue.range {
-            case .all: self = .all
-            case .week: self = .week
-            case .twoWeeks: self = .twoWeeks
-            case .month: self = .month
-            case .year: self = .year
-            default: self = .all
+        var optionDescription: String {
+            switch self {
+            case .all: return "All Time"
+            case .week: return "Week"
+            case .twoWeeks: return "Two Weeks"
+            case .month: return "Month"
+            case .year: return "Year"
             }
         }
 
@@ -372,13 +408,42 @@ extension CountryStatistic {
             }
         }
     }
-}
 
-extension CountryStatistic {
-    init(_ query: CovidQuery) {
-        self.init(name: query.country, timeline: query.timeline.items)
+    func diff<Number: Numeric>(for series: [Number]) -> Number {
+        return series.count < 2 ? 0 : series.last! - series[series.count - 2]
     }
 }
+
+#if !os(watchOS)
+
+extension CountryStatistic.ChartType {
+    init(fromIntentEnum enumValue: ConfigurationIntent){
+        switch enumValue.chartType {
+        case .activeCases: self = .activeCases
+        case .totalCases: self = .cumulativeCases
+        case .totalDeaths: self = .cumulativeDeaths
+        case .newDeaths: self = .newDeaths
+        case .totalRecovered: self = .cumulativeRecovered
+        case .newlyRecovered: self = .newlyRecovered
+        default: self = .activeCases
+        }
+    }
+}
+
+extension CountryStatistic.DateRange {
+    init(fromIntentEnum enumValue: ConfigurationIntent){
+        switch enumValue.range {
+        case .all: self = .all
+        case .week: self = .week
+        case .twoWeeks: self = .twoWeeks
+        case .month: self = .month
+        case .year: self = .year
+        default: self = .all
+        }
+    }
+}
+
+#endif
 
 
 // Mock Data for the Country Statistic.

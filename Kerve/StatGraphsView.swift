@@ -30,7 +30,7 @@ struct StatGraphsView: View {
 
 struct StatGraphsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatGraphsView(countryStatistic: CountryStatistic(name: "Sample", timeline: Array(0...20).map { _ in
+        StatGraphsView(countryStatistic: CountryStatistic(name: "Unknown", timeline: Array(0...20).map { _ in
             .init(cases: Int.random(in: 0...1000), deaths: Int.random(in: 0...1000), recovered: Int.random(in: 0...1000), date: Date().addingTimeInterval(Double.random(in: 0...100000000)))
         }))
     }

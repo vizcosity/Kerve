@@ -30,6 +30,7 @@ extension Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.decimalSeparator = "."
         numberFormatter.maximumSignificantDigits = 2
+        numberFormatter.maximumFractionDigits = 2
         numberFormatter.groupingSize = 3
         numberFormatter.groupingSeparator = ","
         numberFormatter.usesGroupingSeparator = true

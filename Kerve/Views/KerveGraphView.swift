@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import WidgetKit
 import Charts
 
 struct KerveGraphView : View {
@@ -15,29 +14,27 @@ struct KerveGraphView : View {
         case small
         case medium
         case large
-        
-        init(from widgetFamily: WidgetFamily){
-            switch widgetFamily {
-            case .systemSmall: self = .small
-            case .systemMedium: self = .medium
-            case .systemLarge: self = .large
-            default: self = .medium
-            }
-        }
+
     }
 
     @Environment(\.colorScheme) var colorScheme
+    
+    #if !os(watchOS)
     @Environment(\.widgetFamily) var widgetFamily
-
+    var size: Size {
+        set { self._size = newValue }
+        get { self._size ?? .init(from: widgetFamily) }
+    }
+    #else
+    var size: Size { self._size ?? .small }
+    #endif
+    
     let data: [(Date, Double)]
     let location: String
     let chartType: CountryStatistic.ChartType
     let range: CountryStatistic.DateRange
     private var _size: Size?
-    var size: Size {
-        set { self._size = newValue }
-        get { self._size ?? .init(from: widgetFamily) }
-    }
+    
     
     private var chartData: [Double] {
         return data.map(\.1).normalised(padding: 0.1)
@@ -153,25 +150,41 @@ struct KerveGraphView : View {
             chartView(for: chartData, and: diff)
                 .background(
                     chartView(for: chartData, and: diff).blur(radius: 100)
-                        .opacity(widgetFamily == .systemLarge ? 0.3 : 1)
+                        .opacity(size == .large ? 0.3 : 1)
                 )
             }
         }
-        .background(Color(colorScheme == .dark ? .secondarySystemBackground : .systemGroupedBackground))
+        .background(Color("systemBackground"))
         .animation(.easeInOut)
     }
 }
 
 extension KerveGraphView {
-    init(_ countryStatistic: CountryStatistic, chartType: CountryStatistic.ChartType, dateRange: CountryStatistic.DateRange = .all) {
+    init(_ countryStatistic: CountryStatistic, chartType: CountryStatistic.ChartType, dateRange: CountryStatistic.DateRange = .all, size: Size? = nil) {
         self.init(
             data: countryStatistic.chartData(for: chartType, and: dateRange).map { ($0.0, Double($0.1)) },
             location: countryStatistic.name,
             chartType: chartType,
-            range: dateRange
+            range: dateRange,
+            _size: size
         )
     }
 }
+
+#if !os(watchOS)
+import WidgetKit
+
+extension KerveGraphView.Size {
+    init(from widgetFamily: WidgetFamily){
+        switch widgetFamily {
+        case .systemSmall: self = .small
+        case .systemMedium: self = .medium
+        case .systemLarge: self = .large
+        default: self = .medium
+        }
+    }
+}
+#endif
 
 struct GraphView_Previews: PreviewProvider {
     static var previews: some View {

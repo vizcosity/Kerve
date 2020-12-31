@@ -7,52 +7,52 @@
 
 import Foundation
 
-enum Country: String {
+enum Country: String, CaseIterable {
     
-    case taiwanOf
-    case virginIslands
+    case taiwan = "Taiwan"
+    case virginIslands = "Virgin Islands"
     case réunion
     case ghana
     case yemen
-    case costaRica
+    case costaRica = "Costa Rica"
     case ethiopia
     case australia
     case egypt
     case belgium
     case mayotte
-    case sanMarino
+    case sanMarino = "San Marino"
     case cameroon
-    case svalbardAndJanMayen
+    case svalbardAndJanMayen = "Svalbard and Jan Mayen"
     case turkey
     case luxembourg
     case angola
-    case dominicanRepublic
+    case dominicanRepublic = "Dominican Republic"
     case timorleste
-    case trinidadAndTobago
-    case unitedStatesMinorOutlyingIslands
+    case trinidadAndTobago = "Trinidad and Tobago"
+    case unitedStatesMinorOutlyingIslands = "United States Minor Outlying Islands"
     case belize
     case kazakhstan
     case tokelau
     case malta
     case azerbaijan
     case afghanistan
-    case equatorialGuinea
+    case equatorialGuinea = "Equitorial Guinea"
     case uzbekistan
     case isleOfMan
     case jersey
-    case frenchPolynesia
-    case koreaDemocraticPeoplesRepublic
-    case westernSahara
+    case frenchPolynesia = "French Polynesia"
+    case koreaDemocraticPeoplesRepublic = "Korea Democratic Peoples Republic"
+    case westernSahara = "Western Sahara"
     case togo
-    case congoDemocraticRepublicOf
+    case congoDemocraticRepublicOf = "Democratic Republic of Congo"
     case iraq
-    case micronesiaStates
-    case côteDivoire
+    case micronesiaStates = "Micronesia States"
+    case côteDivoire = "Côte Divoire"
     case latvia
     case finland
     case pakistan
-    case tanzania,UnitedRepublicOf
-    case iranRepublic
+    case tanzaniaUnitedRepublicOf = "United Republic of Tanzania"
+    case iranRepublic = "Iran Republic"
     case uganda
     case tonga
     case eswatini
@@ -61,59 +61,59 @@ enum Country: String {
     case spain
     case montenegro
     case hongKong
-    case southGeorgiaAndTheSouthSandwichIslands
+    case southGeorgiaAndTheSouthSandwichIslands = "Sough Georgia and the South Sandwich Islands"
     case fiji
     case libya
-    case solomonIslands
+    case solomonIslands = "Solomon Islands"
     case honduras
     case rwanda
     case ukraine
     case vanuatu
-    case laoPeoplesDemocraticRepublic
-    case republicOfNorthMacedonia
-    case southAfrica
+    case laoPeoplesDemocraticRepublic = "Peoples Democratic Republic of Lao"
+    case republicOfNorthMacedonia = "Republic of North Macedonia"
+    case southAfrica = "South Africa"
     case algeria
     case ecuador
     case bhutan
     case myanmar
     case sudan
-    case frenchGuiana
+    case frenchGuiana = "French Guiana"
     case mauritius
-    case norfolkIsland
-    case bosniaAndHerzegovina
+    case norfolkIsland = "Noforlk Island'"
+    case bosniaAndHerzegovina = "Bosnia and Herzegovina"
     case oman
     case tajikistan
-    case caymanIslands
+    case caymanIslands = "Cayman Islands"
     case grenada
     case netherlands
-    case newCaledonia
+    case newCaledonia = "New Caledonia"
     case madagascar
-    case centralAfricanRepublic
-    case wallisAndFutuna
+    case centralAfricanRepublic = "Central African Republic"
+    case wallisAndFutuna = "Wallis and Futuna"
     case saintLucia
     case curaçao
-    case cocosIslands
+    case cocosIslands = "Cocos Islands"
     case gambia
     case mali
     case martinique
     case bermuda
     case monaco
     case holySee
-    case britishIndianOceanTerritory
+    case britishIndianOceanTerritory = "British Indian Ocean Territory"
     case suriname
     case malaysia
     case liechtenstein
-    case saintKittsAndNevis
+    case saintKittsAndNevis = "Saint Kittis and Nevis"
     case montserrat
     case serbia
     case southSudan
-    case unitedArabEmirates
+    case unitedArabEmirates = "United Arab Emirates"
     case brazil
     case moldovaRepublic
     case nicaragua
     case japan
-    case northernMarianaIslands
-    case bonaire,SintEustatiusAndSaba
+    case northernMarianaIslands = "Northern Mariana Islands"
+    case bonaireSintEustatiusAndSaba = "Bonaire, Sint Eustatius and Saba"
     case bangladesh
     case cambodia
     case chile
@@ -125,7 +125,7 @@ enum Country: String {
     case botswana
     case seychelles
     case georgia
-    case koreaRepublic
+    case koreaRepublic = "Korea Republic"
     case kuwait
     case qatar
     case chad
@@ -135,40 +135,40 @@ enum Country: String {
     case colombia
     case saintBarthélemy
     case cuba
-    case saintVincentAndTheGrenadines
+    case saintVincentAndTheGrenadines = "Saint Vincent and The Grenadines"
     case argentina
     case guatemala
     case israel
-    case saintPierreAndMiquelon
-    case americanSamoa
+    case saintPierreAndMiquelon = "Saint Pierre and Miquelon"
+    case americanSamoa = "American Samoa"
     case morocco
     case nepal
     case portugal
     case maldives
-    case cookIslands
+    case cookIslands = "Cook Islands"
     case guadeloupe
     case greece
     case romania
     case zambia
     case lebanon
-    case unitedStatesOfAmerica
+    case unitedStates = "United States"
     case croatia
-    case heardIslandAndMcdonaldIslands
+    case heardIslandAndMcdonaldIslands = "Heard Island and Mcdonald Islands"
     case guam
-    case marshallIslands
-    case turksAndCaicosIslands
+    case marshallIslands = "Marshall Islands"
+    case turksAndCaicosIslands = "Turks and Caicos Islands"
     case uruguay
     case benin
-    case elSalvador
+    case elSalvador = "El Salvador"
     case djibouti
     case sriLanka
     case greenland
     case kyrgyzstan
     case tuvalu
     case india
-    case saoTomeAndPrincipe
+    case saoTomeAndPrincipe = "Sao Tome and Principe"
     case bahrain
-    case christmasIsland
+    case christmasIsland = "Christmas Island"
     case czechia
     case thailand
     case armenia
@@ -179,55 +179,56 @@ enum Country: String {
     case slovakia
     case china
     case tunisia
-    case venezuelaRepublic
+    case venezuelaRepublic = "Venezuela Republic"
     case france
     case antarctica
-    case palestine,StateOf
+    case palestineStateOf = "State of Palestine"
     case poland
-    case frenchSouthernTerritories
-    case falklandIslands
-    case caboVerde
-    case sierraLeone
-    case ålandIslands
+    case frenchSouthernTerritories = "French Southern Territories"
+    case falklandIslands = "Falkland Islands"
+    case caboVerde = "Cabo Verde"
+    case sierraLeone = "Seirra Leone"
+    case ålandIslands = "Aland Islands"
     case denmark
     case andorra
     case gibraltar
-    case puertoRico
+    case puertoRico = "Puerto Rico"
     case austria
-    case bruneiDarussalam
+    case bruneiDarussalam = "Brunei Darussalam"
     case jamaica
     case somalia
     case bahamas
     case estonia
     case cyprus
-    case newZealand
+    case newZealand = "New Zealand"
     case burundi
     case sweden
     case samoa
     case switzerland
     case macao
-    case faroeIslands
+    case faroeIslands = "Faroe Islands"
     case indonesia
     case kenya
     case hungary
     case slovenia
     case dominica
     case niger
-    case guineaBissau
+    case guineaBissau = "Guinea Bissau"
     case pitcairn
     case mauritania
     case paraguay
     case burkinaFaso
     case comoros
     case nauru
-    case papuaNewGuinea
-    case boliviaState
+    case papuaNewGuinea = "Papua New Guinea"
+    case boliviaState = "Bolivia State"
     case singapore
     case jordan
     case eritrea
     case norway
     case nigeria
-    case saintHelena,AscensionAndTristanDaCunha
+    case saintHelena = "Saint Helena"
+    case AscensionAndTristanDaCunha = "Ascension and Tristan Da Cunha"
     case zimbabwe
     case mozambique
     case palau
@@ -235,10 +236,10 @@ enum Country: String {
     case liberia
     case anguilla
     case barbados
-    case antiguaAndBarbuda
-    case russianFederation
-    case saintMartin
-    case bouvetIsland
+    case antiguaAndBarbuda = "Antigua and Barbuda"
+    case russianFederation = "Russian Federation"
+    case saintMartin = "Stain Martin"
+    case bouvetIsland = "Bouvet Island"
     case guinea
     case mongolia
     case belarus
@@ -246,17 +247,22 @@ enum Country: String {
     case lithuania
     case canada
     case germany
-    case syrianArabRepublic
+    case syrianArabRepublic = "Syrian Arab Republic"
     case niue
-    case sintMaarten
+    case sintMaarten = "Sint Maarten"
     case vietnam
     case turkmenistan
     case malawi
     case namibia
-    case unitedKingdomOfGreatBritainAndNorthernIreland
+    case unitedKingdom = "United Kingdom"
     case albania
-    case saudiArabia
+    case saudiArabia = "Saudi Arabia"
     case haiti
+    case unknown
+
+    var description: String {
+        self.rawValue.split(separator: " ").count > 1 ? self.rawValue : self.rawValue.capitalized
+    }
 
     var code: String? {
         Self.countryToCodeMap[self.rawValue.capitalized]
@@ -515,4 +521,10 @@ enum Country: String {
         "Zimbabwe": "ZWE",
         "Åland Islands": "ALA"
       ]
+}
+
+extension Country: Comparable {
+    static func < (lhs: Country, rhs: Country) -> Bool {
+        lhs.description < rhs.description
+    }
 }
