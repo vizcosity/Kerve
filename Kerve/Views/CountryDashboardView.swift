@@ -49,14 +49,14 @@ struct CountryDashboardView: View {
                     }, value: range)
                 })
 
-            KerveGraphView(self.countryStatistic!, chartType: emphasisedChartType, dateRange: displayedDateRange)
+            KerveGraphBlockView(self.countryStatistic!, chartType: emphasisedChartType, dateRange: displayedDateRange)
                 .aspectRatio(1, contentMode: .fill)
                 .cornerRadius(10)
 
             LazyVGrid(columns: [.init(), .init()], content: {
                 ForEach(CountryStatistic.ChartType.allCases.filter { $0 != emphasisedChartType }, id: \.self, content: { chartType in
                     Button(action: { self.emphasisedChartType = chartType }, label: {
-                    KerveGraphView(self.countryStatistic!, chartType: chartType, dateRange: displayedDateRange, size: .small)
+                    KerveGraphBlockView(self.countryStatistic!, chartType: chartType, dateRange: displayedDateRange, size: .small)
                         .aspectRatio(1, contentMode: .fit)
                         .cornerRadius(10)
                     })

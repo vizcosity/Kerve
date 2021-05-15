@@ -1,21 +1,13 @@
 //
-//  GraphView.swift
+//  KerveGraphBlockView.swift
 //  Kerve
 //
 //  Created by Aaron Baw on 26/12/2020.
 //
 
 import SwiftUI
-import Charts
 
-struct KerveGraphView : View {
-
-    enum Size {
-        case small
-        case medium
-        case large
-
-    }
+struct KerveGraphBlockView : View {
 
     @Environment(\.colorScheme) var colorScheme
     
@@ -28,14 +20,19 @@ struct KerveGraphView : View {
     #else
     var size: Size { self._size ?? .small }
     #endif
-    
+
+    // MARK: - Stored Properties
+
     let data: [(Date, Double)]
     let location: String
     let chartType: CountryStatistic.ChartType
     let range: CountryStatistic.DateRange
+    var backgroundColor: Color = Color("systemBackground")
+    var showInfoHeader: Bool = true
     private var _size: Size?
     
-    
+    // MARK: - Computed Properties
+
     private var chartData: [Double] {
         return data.map(\.1).normalised(padding: 0.1)
     }
@@ -64,35 +61,6 @@ struct KerveGraphView : View {
     }
     private var lowestValueText: String {
         "Lowest \(Int(data.map(\.1).min() ?? 0).formattedString)"
-    }
-
-    // MARK: - Animating Properties
-    @State var animatingPosition: CGFloat = 10
-    @State var animatingBlur: CGFloat = 5
-
-    private func chartView(for data: [Double], and diff: Double) -> some View {
-        return Chart(data: data)
-            .chartStyle(
-                AreaChartStyle(
-                    fill:
-                        LinearGradient(
-                            gradient:
-                                Gradient(
-                                    colors: [.blue, diff > 0 ? .red : .green]
-                                ),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                )
-            ).onAppear {
-                withAnimation {
-                    self.animatingPosition = 0
-                    self.animatingBlur = 0
-                }
-            }
-            .blur(radius: animatingBlur)
-            .offset(x: 0, y: animatingPosition)
-            .animation(Animation.easeInOut(duration: 0.5))
     }
 
     private var currentCasesAndChangeViews: some View {
@@ -157,53 +125,45 @@ struct KerveGraphView : View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            headerInfoView
+            if showInfoHeader { headerInfoView }
             ZStack {
-            chartView(for: chartData, and: diff)
-                .background(
-                    chartView(for: chartData, and: diff).blur(radius: 100)
-                        .opacity(size == .large ? 0.3 : 1)
-                )
+            
             }
         }
-        .background(Color("systemBackground"))
+        .background(backgroundColor)
         .animation(.easeInOut)
     }
 }
 
-extension KerveGraphView {
-    init(_ countryStatistic: CountryStatistic, chartType: CountryStatistic.ChartType, dateRange: CountryStatistic.DateRange = .all, size: Size? = nil) {
+extension KerveGraphBlockView {
+    init(
+        _ countryStatistic: CountryStatistic,
+        chartType: CountryStatistic.ChartType,
+        dateRange: CountryStatistic.DateRange = .all,
+        size: Size? = nil,
+        backgroundColor: Color = Color("systemBackground"),
+        showInfoHeader: Bool = true
+    ) {
         self.init(
             data: countryStatistic.chartData(for: chartType, and: dateRange).map { ($0.0, Double($0.1)) },
             location: countryStatistic.name,
             chartType: chartType,
             range: dateRange,
+            backgroundColor: backgroundColor,
+            showInfoHeader: showInfoHeader,
             _size: size
         )
     }
 }
 
-#if !os(watchOS)
-import WidgetKit
 
-extension KerveGraphView.Size {
-    init(from widgetFamily: WidgetFamily){
-        switch widgetFamily {
-        case .systemSmall: self = .small
-        case .systemMedium: self = .medium
-        case .systemLarge: self = .large
-        default: self = .medium
-        }
-    }
-}
-#endif
 
 struct GraphView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            KerveGraphView(.mocked, chartType: .activeCases)
+            KerveGraphBlockView(.mocked, chartType: .activeCases)
                 .frame(width: 300, height: 300, alignment: .center)
-            KerveGraphView(.mocked, chartType: .activeCases)
+            KerveGraphBlockView(.mocked, chartType: .activeCases)
                 .frame(width: 300, height: 300, alignment: .center)
                 .preferredColorScheme(.dark)
         }.previewLayout(.sizeThatFits)

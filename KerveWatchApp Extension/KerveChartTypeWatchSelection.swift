@@ -24,7 +24,7 @@ struct KerveChartTypeWatchSelection: View {
                     self.onSelection()
                 }, label:
                     {
-                        KerveGraphView(countryStatistic, chartType: chartType, dateRange: dateRange, size: .small)
+                        KerveGraphBlockView(countryStatistic, chartType: chartType, dateRange: dateRange, size: .small)
                             .aspectRatio(1.0, contentMode: .fit)
                         
                     }

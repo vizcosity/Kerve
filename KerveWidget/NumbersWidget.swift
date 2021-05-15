@@ -86,7 +86,7 @@ struct NumbersWidget: Widget {
     
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            KerveGraphView(entry.countryStatistic, chartType: entry.chartType, dateRange: entry.dateRange)
+            KerveGraphBlockView(entry.countryStatistic, chartType: entry.chartType, dateRange: entry.dateRange)
                 .widgetURL(entry.widgetURL)
         }
         .configurationDisplayName("Kerve Widget")
@@ -99,20 +99,20 @@ struct NumbersWidget_Previews: PreviewProvider {
         Group {
             
             Group {
-                KerveGraphView(.mocked, chartType: .activeCases)
-                KerveGraphView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
                     .environment(\.colorScheme, .dark)
             }.previewContext(WidgetPreviewContext(family: .systemSmall))
             
             Group {
-                KerveGraphView(.mocked, chartType: .activeCases)
-                KerveGraphView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
                     .environment(\.colorScheme, .dark)
             }.previewContext(WidgetPreviewContext(family: .systemMedium))
             
             Group {
-                KerveGraphView(.mocked, chartType: .activeCases)
-                KerveGraphView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
+                KerveGraphBlockView(.mocked, chartType: .activeCases)
                     .environment(\.colorScheme, .dark)
             }.previewContext(WidgetPreviewContext(family: .systemLarge))
             

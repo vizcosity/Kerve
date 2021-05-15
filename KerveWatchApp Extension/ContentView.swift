@@ -25,7 +25,7 @@ struct ContentView: View {
             if _countryStatistic == nil {
                 ProgressView()
             } else {
-                KerveGraphView(_countryStatistic!, chartType: chartType, dateRange: dateRange, size: .small)
+                KerveGraphBlockView(_countryStatistic!, chartType: chartType, dateRange: dateRange, size: .small)
                     .onLongPressGesture {
                         chartTypeSelectionModalIsDisplayed = true
                     }

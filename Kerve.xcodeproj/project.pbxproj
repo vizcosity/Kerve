@@ -30,8 +30,8 @@
 		21270F75259BB2A900FA23DF /* GradientGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21270F74259BB2A900FA23DF /* GradientGroupBoxStyle.swift */; };
 		21270F7B259BD7AF00FA23DF /* ClearSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21270F7A259BD7AF00FA23DF /* ClearSegmentedPicker.swift */; };
 		2135970F2597E1AD00C4916D /* IndividualCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2135970E2597E1AD00C4916D /* IndividualCountryView.swift */; };
-		213597192597E25100C4916D /* KerveGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphView.swift */; };
-		2135971E2597E28500C4916D /* KerveGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphView.swift */; };
+		213597192597E25100C4916D /* KerveGraphBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphBlockView.swift */; };
+		2135971E2597E28500C4916D /* KerveGraphBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphBlockView.swift */; };
 		213597282597E36A00C4916D /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 213597272597E36A00C4916D /* Charts */; };
 		2135972E2597E64D00C4916D /* StatisticBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2135972D2597E64D00C4916D /* StatisticBlockView.swift */; };
 		213597342597E99C00C4916D /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597332597E99C00C4916D /* Statistic.swift */; };
@@ -51,8 +51,13 @@
 		218E0A3824E97050000F3FBF /* COVIDStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A3724E97050000F3FBF /* COVIDStatsTests.swift */; };
 		218E0A4324E97050000F3FBF /* COVIDStatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A4224E97050000F3FBF /* COVIDStatsUITests.swift */; };
 		218E0A5224E9709E000F3FBF /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E0A5124E9709E000F3FBF /* Fetcher.swift */; };
+		219679CC26501D4D00B62A9E /* GraphDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219679CB26501D4D00B62A9E /* GraphDetailView.swift */; };
+		219679CE2650215200B62A9E /* BaseGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219679CD2650215200B62A9E /* BaseGraphView.swift */; };
+		219679D02650231F00B62A9E /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219679CF2650231F00B62A9E /* Size.swift */; };
+		219679D12650237700B62A9E /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219679CF2650231F00B62A9E /* Size.swift */; };
+		219679D22650237800B62A9E /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219679CF2650231F00B62A9E /* Size.swift */; };
 		21ACD98A258FA9E300BBA90A /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACD989258FA9E300BBA90A /* Country.swift */; };
-		21BAF704259E0BD6004F901F /* KerveGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphView.swift */; };
+		21BAF704259E0BD6004F901F /* KerveGraphBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213597182597E25100C4916D /* KerveGraphBlockView.swift */; };
 		21BAF718259E0BDF004F901F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112C12B258D7F390067258C /* Constant.swift */; };
 		21BAF71F259E0BE2004F901F /* Date+COVIDStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112C133258D81E20067258C /* Date+COVIDStats.swift */; };
 		21BAF726259E0BE5004F901F /* Array+COVIDStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112C138258D82270067258C /* Array+COVIDStats.swift */; };
@@ -173,7 +178,7 @@
 		21270F74259BB2A900FA23DF /* GradientGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientGroupBoxStyle.swift; sourceTree = "<group>"; };
 		21270F7A259BD7AF00FA23DF /* ClearSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearSegmentedPicker.swift; sourceTree = "<group>"; };
 		2135970E2597E1AD00C4916D /* IndividualCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualCountryView.swift; sourceTree = "<group>"; };
-		213597182597E25100C4916D /* KerveGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerveGraphView.swift; sourceTree = "<group>"; };
+		213597182597E25100C4916D /* KerveGraphBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerveGraphBlockView.swift; sourceTree = "<group>"; };
 		2135972D2597E64D00C4916D /* StatisticBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticBlockView.swift; sourceTree = "<group>"; };
 		213597332597E99C00C4916D /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
 		213597392597F2D600C4916D /* InvertedLabelLayoutStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvertedLabelLayoutStyle.swift; sourceTree = "<group>"; };
@@ -195,6 +200,9 @@
 		218E0A4224E97050000F3FBF /* COVIDStatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVIDStatsUITests.swift; sourceTree = "<group>"; };
 		218E0A4424E97050000F3FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218E0A5124E9709E000F3FBF /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		219679CB26501D4D00B62A9E /* GraphDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailView.swift; sourceTree = "<group>"; };
+		219679CD2650215200B62A9E /* BaseGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGraphView.swift; sourceTree = "<group>"; };
+		219679CF2650231F00B62A9E /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		21ACD989258FA9E300BBA90A /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		21DFDCDC258FDA3200C6A084 /* Number+Cerve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Cerve.swift"; sourceTree = "<group>"; };
 		21E246EE259E095900F55498 /* Kerve.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kerve.entitlements; sourceTree = "<group>"; };
@@ -307,9 +315,11 @@
 				2135970E2597E1AD00C4916D /* IndividualCountryView.swift */,
 				216FC6E5259B873E00C88555 /* CountryDashboardView.swift */,
 				2135972D2597E64D00C4916D /* StatisticBlockView.swift */,
-				213597182597E25100C4916D /* KerveGraphView.swift */,
+				213597182597E25100C4916D /* KerveGraphBlockView.swift */,
+				219679CD2650215200B62A9E /* BaseGraphView.swift */,
 				216FC6DF259B83BD00C88555 /* SearchBar.swift */,
 				21FD9E3125BCF8600033FB47 /* AnimatingUnderlineView.swift */,
+				219679CB26501D4D00B62A9E /* GraphDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -399,6 +409,7 @@
 				218E0A5124E9709E000F3FBF /* Fetcher.swift */,
 				211599DB24F194AC001D7175 /* Stats.swift */,
 				216D0B8A25604C9800428E77 /* ViewModel.swift */,
+				219679CF2650231F00B62A9E /* Size.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -675,11 +686,12 @@
 				2112C1B5258E60340067258C /* Date+COVIDStats.swift in Sources */,
 				21E9B10C259C096A009779BA /* CountryDetail.swift in Sources */,
 				2112C19E258E525D0067258C /* NumbersWidget.swift in Sources */,
-				2135971E2597E28500C4916D /* KerveGraphView.swift in Sources */,
+				2135971E2597E28500C4916D /* KerveGraphBlockView.swift in Sources */,
 				2112C1BF258E633A0067258C /* Constant.swift in Sources */,
 				2112C1D1258EBC230067258C /* Stats.swift in Sources */,
 				2112C1A3258E52620067258C /* NumbersWidget.intentdefinition in Sources */,
 				2112C1BA258E63370067258C /* Array+COVIDStats.swift in Sources */,
+				219679D12650237700B62A9E /* Size.swift in Sources */,
 				21DFDCE6258FDB7300C6A084 /* Number+Cerve.swift in Sources */,
 				21361D76259CC2C8004C5A74 /* InvertedLabelLayoutStyle.swift in Sources */,
 				213BCC0A259BA22C00E48042 /* Statistic.swift in Sources */,
@@ -699,7 +711,8 @@
 				211599DE24F19AD3001D7175 /* StatGraphsView.swift in Sources */,
 				21ACD98A258FA9E300BBA90A /* Country.swift in Sources */,
 				2112C12C258D7F390067258C /* Constant.swift in Sources */,
-				213597192597E25100C4916D /* KerveGraphView.swift in Sources */,
+				213597192597E25100C4916D /* KerveGraphBlockView.swift in Sources */,
+				219679D02650231F00B62A9E /* Size.swift in Sources */,
 				2135972E2597E64D00C4916D /* StatisticBlockView.swift in Sources */,
 				2112C139258D82270067258C /* Array+COVIDStats.swift in Sources */,
 				2135973A2597F2D600C4916D /* InvertedLabelLayoutStyle.swift in Sources */,
@@ -710,12 +723,14 @@
 				216FC6E6259B873E00C88555 /* CountryDashboardView.swift in Sources */,
 				21270F6F259BB13800FA23DF /* GradientBlurView.swift in Sources */,
 				216FC6E0259B83BD00C88555 /* SearchBar.swift in Sources */,
+				219679CC26501D4D00B62A9E /* GraphDetailView.swift in Sources */,
 				21270F7B259BD7AF00FA23DF /* ClearSegmentedPicker.swift in Sources */,
 				216FC6D6259B807500C88555 /* CountrySelectionView.swift in Sources */,
 				218E0A2624E9704D000F3FBF /* KerveApp.swift in Sources */,
 				216D0B8B25604C9800428E77 /* ViewModel.swift in Sources */,
 				218E0A5224E9709E000F3FBF /* Fetcher.swift in Sources */,
 				2135970F2597E1AD00C4916D /* IndividualCountryView.swift in Sources */,
+				219679CE2650215200B62A9E /* BaseGraphView.swift in Sources */,
 				2112C1A4258E52620067258C /* NumbersWidget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,8 +759,9 @@
 				21BAF718259E0BDF004F901F /* Constant.swift in Sources */,
 				21E24715259E0B2E00F55498 /* NotificationController.swift in Sources */,
 				21BAF726259E0BE5004F901F /* Array+COVIDStats.swift in Sources */,
+				219679D22650237800B62A9E /* Size.swift in Sources */,
 				21BAF734259E0BE9004F901F /* Number+Cerve.swift in Sources */,
-				21BAF704259E0BD6004F901F /* KerveGraphView.swift in Sources */,
+				21BAF704259E0BD6004F901F /* KerveGraphBlockView.swift in Sources */,
 				21BAF745259E0C04004F901F /* Stats.swift in Sources */,
 				21E24713259E0B2E00F55498 /* ContentView.swift in Sources */,
 				21BAF73B259E0BFD004F901F /* Statistic.swift in Sources */,
