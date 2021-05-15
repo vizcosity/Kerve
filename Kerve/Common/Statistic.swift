@@ -36,7 +36,7 @@ struct Statistic: Hashable {
     
     private func formatAsString(_ value: Double, for kind: Kind) -> String {
         switch kind {
-        case .percentage: return "\(value.formattedAsPercentage)%"
+        case .percentage: return "\((value * 100).formattedAsPercentage)%"
         case .raw: return value.formattedAsRawString
         }
     }

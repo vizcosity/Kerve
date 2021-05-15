@@ -40,10 +40,9 @@ struct MainViewFooter: View {
     }
 }
 
-struct MainView: View {
+struct IndividualCountryView: View {
     
     @Environment(\.colorScheme) var colorScheme
-
 
     @State var countryStatistic: CountryStatistic?
     @Binding var country: Country
@@ -69,9 +68,10 @@ struct MainView: View {
                     MainViewFooter()
                         .padding(.top)
                 }
+                .padding(.bottom, 90)
             }
-            .edgesIgnoringSafeArea(.all)
             .padding()
+            .padding(.top, 30)
             .frame(maxHeight: .infinity)
             .navigationBarTitle("Kerve")
         }.onAppear {
@@ -79,6 +79,8 @@ struct MainView: View {
         }.onChange(of: country, perform: { value in
             fetchCountryStatistic()
         })
+        .edgesIgnoringSafeArea(.all)
+
     }
 
 //    private func fetchCountryStatistic() {
@@ -120,7 +122,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            MainView(country: .constant(.gibraltar), emphasisedChartType: .constant(.activeCases), displayedDateRange: .constant(.all))
+            IndividualCountryView(country: .constant(.gibraltar), emphasisedChartType: .constant(.activeCases), displayedDateRange: .constant(.all))
                 .preferredColorScheme(.dark)
         }
 

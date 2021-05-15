@@ -19,7 +19,7 @@ struct COVIDStatsApp: App {
     @AppStorage("displayedDateRange") var displayedDateRange: CountryStatistic.DateRange = .all
     var body: some Scene {
         WindowGroup {
-            MainView(
+            IndividualCountryView(
                 country: $country,
                 emphasisedChartType: $emphasisedChartType,
                 displayedDateRange: $displayedDateRange

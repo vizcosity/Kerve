@@ -312,7 +312,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "647AD570-737F-4AD3-803C-9ECAACF82C81"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -328,7 +328,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C82CE1F0-E33C-4EBE-A0F7-37EBBD7F9CC4"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -344,7 +344,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0A0DC128-E745-4A61-A8BA-B8B9B8B8E851"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -356,12 +356,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0A0DC128-E745-4A61-A8BA-B8B9B8B8E851 - 9387028a6d0c0408"
+                  uuid = "0A0DC128-E745-4A61-A8BA-B8B9B8B8E851 - 6fd196a499d25ef9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static KerveWatchApp_Extension.CovidAPI.countryDetails() -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;, KerveWatchApp_Extension.CovidAPI.Agent.CovidError&gt;"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "static Kerve.CovidAPI.countryDetails() -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;Kerve.CountryDetail&gt;, Kerve.CovidAPI.Agent.CovidError&gt;"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -371,12 +371,12 @@
                   offsetFromSymbolStart = "480">
                </Location>
                <Location
-                  uuid = "0A0DC128-E745-4A61-A8BA-B8B9B8B8E851 - 75fc1b04996e97fb"
+                  uuid = "0A0DC128-E745-4A61-A8BA-B8B9B8B8E851 - 62e3dd05d0b783fb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Error) -&gt; KerveWatchApp_Extension.CovidAPI.Agent.CovidError in static KerveWatchApp_Extension.CovidAPI.countryDetails() -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;, KerveWatchApp_Extension.CovidAPI.Agent.CovidError&gt;"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Swift.Error) -&gt; Kerve.CovidAPI.Agent.CovidError in static Kerve.CovidAPI.countryDetails() -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;Kerve.CountryDetail&gt;, Kerve.CovidAPI.Agent.CovidError&gt;"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -392,7 +392,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4AE74533-BAAB-4EFE-8914-E1AA02A54B1D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -404,12 +404,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4AE74533-BAAB-4EFE-8914-E1AA02A54B1D - afa7eec0aced6556"
+                  uuid = "4AE74533-BAAB-4EFE-8914-E1AA02A54B1D - c0e1af8a0d5c488a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; Swift.Optional&lt;KerveWatchApp_Extension.CountryDetail&gt; in static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String) -&gt; Combine.AnyPublisher&lt;KerveWatchApp_Extension.CountryDetail, KerveWatchApp_Extension.CovidAPI.Agent.CovidError&gt;"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; Swift.Optional&lt;Kerve.CountryDetail&gt; in static Kerve.CovidAPI.countryDetail(for: Swift.String) -&gt; Combine.AnyPublisher&lt;Kerve.CountryDetail, Kerve.CovidAPI.Agent.CovidError&gt;"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -419,12 +419,12 @@
                   offsetFromSymbolStart = "68">
                </Location>
                <Location
-                  uuid = "4AE74533-BAAB-4EFE-8914-E1AA02A54B1D - 481b4a4a9f9a9a47"
+                  uuid = "4AE74533-BAAB-4EFE-8914-E1AA02A54B1D - 8c8ebdfe8f7b621d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (KerveWatchApp_Extension.CountryDetail) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; Swift.Optional&lt;KerveWatchApp_Extension.CountryDetail&gt; in static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String) -&gt; Combine.AnyPublisher&lt;KerveWatchApp_Extension.CountryDetail, KerveWatchApp_Extension.CovidAPI.Agent.CovidError&gt;"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Kerve.CountryDetail) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; Swift.Optional&lt;Kerve.CountryDetail&gt; in static Kerve.CovidAPI.countryDetail(for: Swift.String) -&gt; Combine.AnyPublisher&lt;Kerve.CountryDetail, Kerve.CovidAPI.Agent.CovidError&gt;"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -440,7 +440,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3BBA2352-BA01-4032-A7E2-EBDD03799CD3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -456,7 +456,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A822425F-8181-4E42-A273-E9D3D8D2106C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -468,12 +468,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A822425F-8181-4E42-A273-E9D3D8D2106C - 3c7e9b25a9fc0ac0"
+                  uuid = "A822425F-8181-4E42-A273-E9D3D8D2106C - 2d7032faf4f3a324"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static KerveWatchApp_Extension.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryStatistic) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "static Kerve.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (Kerve.CountryStatistic) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -483,12 +483,12 @@
                   offsetFromSymbolStart = "168">
                </Location>
                <Location
-                  uuid = "A822425F-8181-4E42-A273-E9D3D8D2106C - b0794e42048d7079"
+                  uuid = "A822425F-8181-4E42-A273-E9D3D8D2106C - 2f69b60c697f950b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (KerveWatchApp_Extension.CovidQuery) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryStatistic) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Kerve.CovidQuery) -&gt; () in static Kerve.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (Kerve.CountryStatistic) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -504,7 +504,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "421EBDE3-DD18-4741-A183-CCDB47B543E2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -516,12 +516,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "421EBDE3-DD18-4741-A183-CCDB47B543E2 - b0794e42048d7079"
+                  uuid = "421EBDE3-DD18-4741-A183-CCDB47B543E2 - 2f69b60c697f950b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (KerveWatchApp_Extension.CovidQuery) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryStatistic) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Kerve.CovidQuery) -&gt; () in static Kerve.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (Kerve.CountryStatistic) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -531,12 +531,12 @@
                   offsetFromSymbolStart = "232">
                </Location>
                <Location
-                  uuid = "421EBDE3-DD18-4741-A183-CCDB47B543E2 - 51e1679ca3a99054"
+                  uuid = "421EBDE3-DD18-4741-A183-CCDB47B543E2 - 7f361e81b1fcb498"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (KerveWatchApp_Extension.CountryDetail) -&gt; () in closure #1 (KerveWatchApp_Extension.CovidQuery) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryStatistic) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Kerve.CountryDetail) -&gt; () in closure #1 (Kerve.CovidQuery) -&gt; () in static Kerve.CovidAPI.countryStatistic(for: Swift.String, completionHandler: (Kerve.CountryStatistic) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -564,12 +564,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "923C3789-BA58-424D-86F8-9152E14AF82E - e292ebb908d9063d"
+                  uuid = "923C3789-BA58-424D-86F8-9152E14AF82E - 6e9f6bb09f4a1575"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryDetail) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; () in static Kerve.CovidAPI.countryDetail(for: Swift.String, completionHandler: (Kerve.CountryDetail) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -579,12 +579,12 @@
                   offsetFromSymbolStart = "88">
                </Location>
                <Location
-                  uuid = "923C3789-BA58-424D-86F8-9152E14AF82E - d62300669cdb9a4a"
+                  uuid = "923C3789-BA58-424D-86F8-9152E14AF82E - a1dec52c214eeb2a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (KerveWatchApp_Extension.CountryDetail) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryDetail) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Kerve.CountryDetail) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; () in static Kerve.CovidAPI.countryDetail(for: Swift.String, completionHandler: (Kerve.CountryDetail) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -680,7 +680,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ECF0D8F4-A4CC-49E8-B307-7E15EE996A49"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kerve/Model/Fetcher.swift"
@@ -708,27 +708,27 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4A11688A-7822-48AD-BCDD-4FBAAE6DFCC9 - 5b4090727d18db9b"
+                  uuid = "4A11688A-7822-48AD-BCDD-4FBAAE6DFCC9 - 43e5b574d5f399b6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static KerveWatchApp_Extension.CovidAPI.countryDetails(completionHandler: (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "static Kerve.CovidAPI.countryDetails(completionHandler: (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "257"
                   endingLineNumber = "257"
-                  offsetFromSymbolStart = "328">
+                  offsetFromSymbolStart = "300">
                </Location>
                <Location
-                  uuid = "4A11688A-7822-48AD-BCDD-4FBAAE6DFCC9 - 41d5a5c7efea752e"
+                  uuid = "4A11688A-7822-48AD-BCDD-4FBAAE6DFCC9 - f16557b493ef6a58"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryDetails(completionHandler: (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Kerve.CovidAPI.countryDetails(completionHandler: (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -772,12 +772,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0B3E420B-9666-4A63-9B57-25A8D87B102D - 48b8d9df59532391"
+                  uuid = "0B3E420B-9666-4A63-9B57-25A8D87B102D - 50b831b8e416ad2e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryDetail) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "static Kerve.CovidAPI.countryDetail(for: Swift.String, completionHandler: (Kerve.CountryDetail) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -787,12 +787,12 @@
                   offsetFromSymbolStart = "176">
                </Location>
                <Location
-                  uuid = "0B3E420B-9666-4A63-9B57-25A8D87B102D - e292ebb908d9063d"
+                  uuid = "0B3E420B-9666-4A63-9B57-25A8D87B102D - 6e9f6bb09f4a1575"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;KerveWatchApp_Extension.CountryDetail&gt;) -&gt; () in static KerveWatchApp_Extension.CovidAPI.countryDetail(for: Swift.String, completionHandler: (KerveWatchApp_Extension.CountryDetail) -&gt; ()) -&gt; ()"
-                  moduleName = "KerveWatchApp Extension"
+                  symbolName = "closure #1 (Swift.Array&lt;Kerve.CountryDetail&gt;) -&gt; () in static Kerve.CovidAPI.countryDetail(for: Swift.String, completionHandler: (Kerve.CountryDetail) -&gt; ()) -&gt; ()"
+                  moduleName = "Kerve"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aaronbaw/Code/Kerve/Kerve/Model/Fetcher.swift"
                   startingColumnNumber = "9223372036854775807"

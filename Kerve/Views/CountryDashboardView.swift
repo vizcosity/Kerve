@@ -31,18 +31,21 @@ struct CountryDashboardView: View {
                 StatisticBlockView(statistic: countryStatistic!.casesToday)
                 StatisticBlockView(statistic: countryStatistic!.deathsToday)
                 StatisticBlockView(statistic: countryStatistic!.recoveriesToday)
-                StatisticBlockView(statistic: countryStatistic!.deathsPer100kToday)
+                if countryStatistic?.populationInfectedToday != nil {
+                    StatisticBlockView(statistic: countryStatistic!.populationInfectedToday!)
+                }
                 StatisticBlockView(statistic: countryStatistic!.casesPer100kToday)
                 }.frame(maxHeight: .infinity)
             })
             
             ClearSegmentedPicker(
                 selection: $displayedDateRange,
-                items: CountryStatistic.DateRange.allCases.map { range in
+                items: CountryStatistic.DateRange.allCases.filter { $0 != .twoWeeks }.map { range in
                     ClearSegmentedPicker.PickerOption(content: {
                         Text(range.optionDescription)
                             .font(.system(.caption, design: .rounded))
                             .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
                     }, value: range)
                 })
 

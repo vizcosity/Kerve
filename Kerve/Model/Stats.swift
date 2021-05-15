@@ -275,7 +275,6 @@ struct CountryStatistic {
     var country: Country { Country.init(rawValue: name) ?? .unknown }
     var detail: CountryDetail?
     var code: String? { Country.init(rawValue: name.capitalized)?.code }
-    var populationSize: Int?
         
     let timeline: [TimelineItem]
     
@@ -333,7 +332,7 @@ extension CountryStatistic {
     }
 
     var populationInfected: [Double]? {
-        guard let populationSize = populationSize else { return nil }
+        guard let populationSize = detail?.population else { return nil }
         return activeCases.map { Double($0)/Double(populationSize) }
     }
     var populationInfectedAndDates: [(Date, Double)]? {

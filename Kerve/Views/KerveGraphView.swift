@@ -66,6 +66,10 @@ struct KerveGraphView : View {
         "Lowest \(Int(data.map(\.1).min() ?? 0).formattedString)"
     }
 
+    // MARK: - Animating Properties
+    @State var animatingPosition: CGFloat = 10
+    @State var animatingBlur: CGFloat = 5
+
     private func chartView(for data: [Double], and diff: Double) -> some View {
         return Chart(data: data)
             .chartStyle(
@@ -80,7 +84,15 @@ struct KerveGraphView : View {
                             endPoint: .trailing
                         )
                 )
-            )
+            ).onAppear {
+                withAnimation {
+                    self.animatingPosition = 0
+                    self.animatingBlur = 0
+                }
+            }
+            .blur(radius: animatingBlur)
+            .offset(x: 0, y: animatingPosition)
+            .animation(Animation.easeInOut(duration: 0.5))
     }
 
     private var currentCasesAndChangeViews: some View {

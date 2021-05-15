@@ -16,31 +16,41 @@ struct ClearSegmentedPicker<Value: Equatable, Content: View>: View {
     
     @Binding var selection: Value
     var items: [PickerOption]
-    var activeSelectionColour: Color = .blue
 
     var verticalPadding: CGFloat = Constants.pickerOptionVerticalPadding
-    
-    var activeSelectionLineCornerRadius: CGFloat = Constants.defaultCornerRadius
 
+    var cornerRadius: CGFloat = Constants.defaultCornerRadius
+
+    var nonActiveOptionOpacity: CGFloat = Constants.inactiveOpacity
+
+    var activeColour: Color { Color(.tertiarySystemGroupedBackground) }
+    var nonActiveColour: Color { Color(.tertiarySystemGroupedBackground).opacity(Double(nonActiveOptionOpacity)) }
+    
     var body: some View {
         HStack {
             ForEach(0..<items.count) { index in
-                Button(action: { self.$selection.wrappedValue = items[index].value }, label: {
+                Button(action: {
+                    self.$selection.wrappedValue = items[index].value
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                }, label: {
                     VStack {
                     items[index].content()
                         .padding(.vertical, verticalPadding)
-                        .overlay(
-                          VStack {
-                            if selection == items[index].value {
-                                Spacer()
-                                Rectangle()
-                                    .fill(activeSelectionColour)
-                                    .frame(height: 2)
-                                    .cornerRadius(activeSelectionLineCornerRadius)
-                            }
-                          }
-                        )
-                    }.frame(maxWidth: .infinity)
+
+                    }
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                      VStack {
+                        if selection == items[index].value {
+                            Spacer()
+                            AnimatingUnderlineView()
+                        }
+                      }
+                    )
+                    .padding(.vertical, verticalPadding)
+                    .padding(.horizontal)
+                    .background(selection == items[index].value ? activeColour : nonActiveColour)
+                    .cornerRadius(cornerRadius)
                 })
             }
         }
@@ -50,6 +60,17 @@ struct ClearSegmentedPicker<Value: Equatable, Content: View>: View {
 struct ClearRoundedSegmentedPickerStyle_Previews: PreviewProvider {
     @State static var index: Int = 1
     static var previews: some View {
-        ClearSegmentedPicker(selection: .constant(3), items: Array(repeating: .init(content: { Text("Sample Texting") }, value: 3), count: 4))
+        Group {
+            ClearSegmentedPicker(selection: .constant(0), items: [
+                                    .init(content: { Text("Something") }, value: 0),
+                                    .init(content: { Text("Else") }, value: 1)
+
+            ])
+            ClearSegmentedPicker(selection: .constant(0), items: [
+                                    .init(content: { Text("Something") }, value: 0),
+                                    .init(content: { Text("Else") }, value: 1)
+
+            ]).colorScheme(.dark)
+        }.previewLayout(.sizeThatFits)
     }
 }

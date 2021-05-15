@@ -19,11 +19,13 @@ struct Constants {
     static let defaultProgressBarRadius: CGFloat = 6
     static let defaultCornerRadius: CGFloat = 10
     static let defaultBlurRadius: CGFloat = 50
-    static let pickerOptionVerticalPadding: CGFloat = 5
+    static let pickerOptionVerticalPadding: CGFloat = 10
 
     static let defaultMaxNumberOfPoints: Int = 20
     
     static let shadowColour: Color = Color.black.opacity(0.15)
+
+    static let inactiveOpacity: CGFloat = 0.5
     
     static let shadowRadius: CGFloat = 5
     static let shadowX: CGFloat = 0
